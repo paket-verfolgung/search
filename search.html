@@ -1,0 +1,49 @@
+<style>
+textarea { 
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 75%;
+  }
+select { 
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 75%;
+  }
+</style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<form name="formular">
+    <a><b>Sendungsnummer:</b></a><br>
+    <textarea id="PAKETNUMMER" style="resize:none" wrap="on" rows="1" name="feld" placeholder="Paketnummer eintragen"></textarea><br>
+    <a><b>Paketdienst:</b></a><br>
+    <select id="PAKETDIENST">
+        <option value="">Paketdienstleister</option>
+        <option value="https://www.dhl.de/de/privatkunden/pakete-empfangen/verfolgen.html?piececode=">DHL</option>
+        <option value="https://www.dhl.com/de-de/home/tracking/tracking-parcel.html?submit=1&tracking-id=">DHL Express</option>
+        <option value="https://www.deutschepost.de/sendung/simpleQueryResult.html?form.sendungsnummer=">Deutsche Post</option>
+        <option value="https://tracking.dpd.de/status/de_LU/parcel/">DPD</option>
+        <option value="https://tracking.hermesworld.com/?TrackID=">Hermes</option>
+        <option value="https://www.upstoday.com/de/tracking/">UPS</option>
+        <option value="https://www.gls-pakete.de/sendungsverfolgung?trackingNumber=">GLS</option>
+        <option value="https://www.fedex.com/fedextrack/no-results-found?trknbr=">FedEx</option>
+        <option value="https://parcelsapp.com/de/tracking/">Auslandspaket</option>
+    </select><br>
+    <input type="button" class="btn btn-success btn-sm" onclick="getValue (document.formular.feld)" value="Paket verfolgen" />
+    <script language="javascript" type="text/javascript">
+    function getValue (textarea) {
+    var e = document.getElementById("PAKETDIENST");
+    var PAKETDIENST = e.options[e.selectedIndex].value;
+    if (PAKETDIENST.length == 0)
+        alert ('Sie müssen einen Paketdienstleister auswählen');
+    else
+    if (textarea.type == 'textarea') {
+        var PAKETID = document.formular.feld.value;
+        if (PAKETID.length == 0)
+            alert ('Sie müssen eine Sendungsnummer eingeben');
+        else
+            window.open(PAKETDIENST+PAKETID)
+        }
+    }
+    </script>
+</form>
